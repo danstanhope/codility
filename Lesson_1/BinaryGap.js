@@ -40,3 +40,4 @@ function solution(N) {
     }
     return gap;
 }
+
