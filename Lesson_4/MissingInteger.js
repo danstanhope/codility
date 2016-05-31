@@ -26,16 +26,28 @@ expected worst-case space complexity is O(N), beyond input storage (not counting
 Elements of input arrays can be modified.
 
 */
+function solution(A) {
+    var arr = A.sort();
+    var map = {};
+    var counter = 0;
+    
+    for(var i = 0; i < arr.length; i++){
+        if(arr[i] > 0 && arr[i] <= A.length){
+            map[arr[i]] = true; 
+        }
+    }   
 
-var arr = [1,3,6,4,1,2];
-
-arr = arr.sort();
-
-for(var i = 0; i < arr.length; i++){
-  var current = arr[i];
-  var next = arr[i + 1];
-
-  if(current > 0 && next !== current + 1){
-    console.log(current, next)
-  }
+    for(var key in map){
+        var current = parseInt(key);
+        
+        if(!map[current + 1]){            
+            if(counter > 0)
+                return current + 1;
+            else return current - 1 === 0 ? current + 1 : current - 1;
+        }  
+        
+        counter++;
+    }
+    
+    return 1;
 }
